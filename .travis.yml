@@ -1,0 +1,14 @@
+sudo: required
+language: ruby
+
+services:
+  - docker
+
+install:
+  - sudo apt-get update
+  - sudo apt-get install -y lxc lxc-templates cgroup-lite redir
+
+script:
+  - sudo lxc-create --template download --name ubuntu-14 -- --dist ubuntu --release trusty --arch amd64
+  - sudo lxc-info --name ubuntu-14
+  - sudo lxc-start --name ubuntu-14 -- uname -a
